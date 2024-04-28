@@ -4,10 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .input-container{
+            margin: 20px auto;
+            text-align: center;
+        }
+        .input-box{
+            height: 30px;
+            width: 300px;
+            border-radius: 10px;
+        }
+        .btn{
+            padding: 10px;
+            background-color: #ffa64d;
+            width: 100px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .list-container{
+            background-color: #e9bdc0;
+            color: #913231;
+            width: 500px;
+            padding: 10px;
+            font-size: 20px;
+            display: block;
+            margin: 10px auto;
+            border: 2px solid #913231;
+            border-radius: 8px;
+            height: 400px;
+            overflow-y: scroll;
+        }
+    </style>
 </head>
 <body>
-    <script>
+    <div class="input-container">
+        <input type="text" class="input-box" id="input-box">
+        <button class="btn" onclick="addItem()" >Add</button>
+    </div>
+    <div class="list-container" id="list-container">
         
+    </div>
+    <script>
+        const toDoList=[]
+        function addItem(){
+            const inputElement=document.getElementById("input-box")
+            toDoList.push(inputElement.value)
+            inputElement.value="";
+            list();
+        }
+        function list(){
+            const listContainer=document.getElementById("list-container");
+            listContainer.innerHTML="";
+
+            for(const item of toDoList)
+            {
+                listContainer.innerHTML+=`<div class="list-item">
+                    <input type="checkbox">
+                    ${item}</div>`
+            }
+        }
     </script>
 </body>
 </html>
