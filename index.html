@@ -47,10 +47,17 @@
         
     </div>
     <script>
-        const toDoList=[]
+        let toDoList=[];
+
+        const locallist=localStorage.getItem("todoList");
+        if(locallist){
+            toDoList=JSON.parse(locallist);
+            list();
+        }
         function addItem(){
             const inputElement=document.getElementById("input-box")
             toDoList.push(inputElement.value)
+            localStorage.setItem("toDoList", JSON.stringify(toDoList))
             inputElement.value="";
             list();
         }
